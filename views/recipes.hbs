@@ -7,7 +7,7 @@
     <!-- Add Recipe Form (initially hidden) -->
     <div id="add-recipe-form" class="recipe-form" style="display: none;">
         <h2>Add New Recipe</h2>
-        <form action="/recipes" method="POST">
+        <form id="create-recipe-form" action="/recipes" method="POST">
             <div class="form-group">
                 <label for="title">Recipe Title:</label>
                 <input type="text" id="title" name="title" required>
@@ -62,4 +62,15 @@ function hideAddForm() {
     document.getElementById('add-recipe-form').style.display = 'none';
     document.querySelector('#add-recipe-form form').reset();
 }
+
+document.getElementById('create-recipe-form').addEventListener('submit', function (event) {
+    const titleInput = document.getElementById('title');
+    if (titleInput.value.trim()) {
+        return;
+    }
+
+    event.preventDefault();
+    alert('Title is required.');
+    titleInput.focus();
+});
 </script>
